@@ -196,3 +196,84 @@ export const initialEcommerceOrders = {
     { id: 'ECOM-004', customer: 'Joko Widodo', date: '2024-07-19', total: 'Rp 300.000', platform: 'Tokopedia', reason: 'Barang Rusak' },
   ]
 };
+
+// Production Module Data
+export const initialProductionPlans = [
+  {
+    id: 'PROD-001',
+    productName: 'Headphone Nirkabel',
+    plannedQuantity: 50,
+    startDate: '2024-08-01',
+    endDate: '2024-08-05',
+    status: 'Planning',
+    bom: [
+      { material: 'Plastic Case', quantity: 50, unit: 'pcs', availableStock: 200 },
+      { material: 'Speaker Driver', quantity: 100, unit: 'pcs', availableStock: 150 },
+      { material: 'Battery', quantity: 50, unit: 'pcs', availableStock: 75 },
+      { material: 'Cable', quantity: 50, unit: 'pcs', availableStock: 100 }
+    ],
+    progress: 0,
+    assignedWorkers: ['Dewi Lestari', 'Fandi Ahmad']
+  },
+  {
+    id: 'PROD-002',
+    productName: 'Smartwatch',
+    plannedQuantity: 30,
+    startDate: '2024-08-03',
+    endDate: '2024-08-08',
+    status: 'In Progress',
+    bom: [
+      { material: 'Display Screen', quantity: 30, unit: 'pcs', availableStock: 45 },
+      { material: 'Microcontroller', quantity: 30, unit: 'pcs', availableStock: 60 },
+      { material: 'Strap', quantity: 30, unit: 'pcs', availableStock: 80 },
+      { material: 'Sensor Module', quantity: 30, unit: 'pcs', availableStock: 25 }
+    ],
+    progress: 35,
+    assignedWorkers: ['Rina Utami']
+  }
+];
+
+export const initialProductionOrders = [
+  {
+    id: 'ORDER-001',
+    planId: 'PROD-001',
+    productName: 'Headphone Nirkabel',
+    quantity: 50,
+    startDate: '2024-08-01',
+    status: 'Planning',
+    stages: [
+      { name: 'Assembly', progress: 0, estimatedTime: '2 days' },
+      { name: 'Testing', progress: 0, estimatedTime: '1 day' },
+      { name: 'Packaging', progress: 0, estimatedTime: '1 day' }
+    ],
+    materialsUsed: [],
+    completedDate: null
+  },
+  {
+    id: 'ORDER-002',
+    planId: 'PROD-002',
+    productName: 'Smartwatch',
+    quantity: 30,
+    startDate: '2024-08-03',
+    status: 'In Progress',
+    stages: [
+      { name: 'Assembly', progress: 70, estimatedTime: '2 days' },
+      { name: 'Testing', progress: 50, estimatedTime: '1 day' },
+      { name: 'Packaging', progress: 0, estimatedTime: '1 day' }
+    ],
+    materialsUsed: [
+      { material: 'Display Screen', quantity: 15, unit: 'pcs' },
+      { material: 'Microcontroller', quantity: 15, unit: 'pcs' }
+    ],
+    completedDate: null
+  }
+];
+
+export const productionKPIs = {
+  totalPlans: 2,
+  activeOrders: 1,
+  completedThisMonth: 0,
+  averageCompletionTime: '5 days',
+  materialEfficiency: 95,
+  laborProductivity: 85
+};

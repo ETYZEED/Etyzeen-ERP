@@ -8,15 +8,18 @@ const tokopediaAPI = require('./tokopedia-api');
 const tiktokshopAPI = require('./tiktokshop-api');
 
 class EcommerceIntegration {
+  // Removed duplicate constructor
   constructor() {
     this.platforms = {
       shopee: shopeeAPI,
       tokopedia: tokopediaAPI,
       tiktokshop: tiktokshopAPI
     };
-    
+
     this.connections = {};
     this.syncIntervals = {};
+    this.syncedOrders = {}; // Store synced orders by platform
+    this.syncedProducts = {}; // Store synced products by platform
   }
 
   // Initialize all platform connections
@@ -81,19 +84,26 @@ class EcommerceIntegration {
       const api = this.connections[platform];
       if (api) {
         console.log(`🔄 Syncing ${platform} data...`);
-        
+
         // Sync orders
         const orders = await api.getOrders();
         console.log(`📦 ${platform}: Fetched ${orders.length} orders`);
-        
+
         // Sync products
         const products = await api.getProducts();
         console.log(`📊 ${platform}: Fetched ${products.length} products`);
-        
+
+        // Store the synced data
+        this.syncedOrders[platform] = orders || [];
+        this.syncedProducts[platform] = products || [];
+
         return { orders, products };
       }
     } catch (error) {
       console.error(`❌ Sync failed for ${platform}:`, error.message);
+      // Return empty arrays on error to avoid undefined
+      this.syncedOrders[platform] = [];
+      this.syncedProducts[platform] = [];
     }
   }
 
@@ -153,6 +163,26 @@ class EcommerceIntegration {
       delete this.connections[platform];
       console.log(`🔌 Disconnected from ${platform}`);
     }
+  }
+
+  // Get all synced orders
+  getSyncedOrders() {
+    const allOrders = [];
+    for (const [platform, orders] of Object.entries(this.syncedOrders)) {
+      orders.forEach(order => {
+        allOrders.push({
+          ...order,
+          platform,
+          source: 'ecommerce'
+        });
+      });
+    }
+    return allOrders;
+  }
+
+  // Get synced orders by platform
+  getSyncedOrdersByPlatform(platform) {
+    return this.syncedOrders[platform] || [];
   }
 }
 

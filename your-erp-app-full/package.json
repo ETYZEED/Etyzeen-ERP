@@ -3,12 +3,14 @@
   "version": "1.0.0",
   "private": true,
   "dependencies": {
+    "axios": "^1.7.7",
     "framer-motion": "^12.23.12",
     "lucide-react": "^0.542.0",
     "react": "^19.1.1",
     "react-dom": "^19.1.1",
     "react-scripts": "^5.0.1",
-    "recharts": "^3.1.2"
+    "recharts": "^3.1.2",
+    "your-erp-app-full": "file:.."
   },
   "devDependencies": {
     "autoprefixer": "^10.0.0",

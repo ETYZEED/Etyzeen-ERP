@@ -120,4 +120,90 @@ export const formatRupiah = (angka) => {
     return `Rp ${formatted}`;
 };
 
+// Theme transition utilities
+export const getThemeTransition = (duration = 300) => {
+  return `all ${duration}ms cubic-bezier(0.4, 0, 0.2, 1)`;
+};
+
+export const getSmoothTransition = (properties = ['all'], duration = 300) => {
+  return properties.map(prop => `${prop} ${duration}ms ease-in-out`).join(', ');
+};
+
+// Enhanced theme-aware color utilities
+export const getThemeAwareColor = (theme, type, opacity = 1) => {
+  const colors = {
+    primary: theme.primary,
+    secondary: theme.secondary,
+    accent: theme.accent,
+    text: theme.text,
+    highlight: theme.highlight || theme.accent,
+    light: theme.light || '#a3a3a3',
+    dark: theme.dark || theme.primary,
+    subtle: theme.subtle || theme.secondary
+  };
+
+  const color = colors[type] || theme.text;
+  if (opacity < 1) {
+    // Convert hex to rgba for opacity
+    const r = parseInt(color.slice(1, 3), 16);
+    const g = parseInt(color.slice(3, 5), 16);
+    const b = parseInt(color.slice(5, 7), 16);
+    return `rgba(${r}, ${g}, ${b}, ${opacity})`;
+  }
+  return color;
+};
+
+// Gradient utilities
+export const getThemeGradient = (theme, direction = '135deg') => {
+  return `linear-gradient(${direction}, ${theme.secondary} 0%, ${theme.subtle || theme.primary} 100%)`;
+};
+
+export const getHoverGradient = (theme, color) => {
+  return `radial-gradient(circle at 30% 20%, ${color}30 0%, transparent 50%), radial-gradient(circle at 70% 80%, ${theme.accent}20 0%, transparent 50%)`;
+};
+
+// Shadow utilities
+export const getThemeShadow = (theme, intensity = 'medium') => {
+  const intensities = {
+    light: `${theme.primary}10`,
+    medium: `${theme.primary}20`,
+    strong: `${theme.primary}30`,
+    extra: `${theme.primary}40`
+  };
+
+  const opacity = intensities[intensity] || intensities.medium;
+  return `0 8px 32px -4px ${opacity}, 0 4px 16px -2px ${theme.primary}10, 0 2px 8px -1px ${theme.primary}05`;
+};
+
+// Animation utilities
+export const getPulseAnimation = (color, duration = 2) => {
+  return {
+    animation: `pulse ${duration}s cubic-bezier(0.4, 0, 0.6, 1) infinite`,
+    backgroundColor: color
+  };
+};
+
+export const getScaleAnimation = (scale = 1.03, duration = 300) => {
+  return `transform ${duration}ms ease-in-out`;
+};
+
+// Responsive breakpoint utilities
+export const getResponsiveClasses = (baseClasses, breakpoints = {}) => {
+  const responsiveMap = {
+    sm: 'sm:',
+    md: 'md:',
+    lg: 'lg:',
+    xl: 'xl:'
+  };
+
+  let classes = baseClasses;
+  Object.entries(breakpoints).forEach(([bp, bpClasses]) => {
+    if (responsiveMap[bp]) {
+      classes += ` ${responsiveMap[bp]}${bpClasses}`;
+    }
+  });
+
+  return classes;
+};
+
 export const API_KEY = "YOUR_OPENAI_API_KEY_HERE";
