@@ -51,6 +51,11 @@ import PengeluaranContent from './pages/PengeluaranContent';
 import HutangPiutangContent from './pages/HutangPiutangContent';
 import SaldoKasContent from './pages/SaldoKasContent';
 import { formatRupiah, themes } from './utils/helpers';
+import FinanceModulePlaceholder from './pages/FinanceModulePlaceholder';
+import ChartOfAccounts from './pages/ChartOfAccounts';
+import JournalEntries from './pages/JournalEntries';
+import ProductionPlanning from './pages/ProductionPlanning';
+import { BalanceSheetReport, ProfitLossReport, CashFlowReport } from './pages/FinanceReports';
 
 // Data simulasi untuk demonstrasi
 const financeData = [
@@ -248,7 +253,7 @@ export default function App() {
       case 'finance-dashboard':
         return <FinanceDashboardContent theme={theme} financialSummary={financialSummary} />;
       case 'finance-pemasukan':
-        return <PemasukanContent theme={theme} />;
+        return <PemasukanContent theme={theme} offlineSales={offlineSales} ecommerceOrders={ecommerceOrders} setEcommerceOrders={setEcommerceOrders} />;
       case 'finance-pengeluaran':
         return <PengeluaranContent theme={theme} />;
       case 'finance-payables':
@@ -261,6 +266,38 @@ export default function App() {
         />;
       case 'finance-saldokas':
         return <SaldoKasContent theme={theme} financialSummary={financialSummary} />;
+      // Akuntansi lanjutan
+      case 'finance-journal-sales':
+        return <FinanceModulePlaceholder theme={theme} title="Jurnal Penjualan" description="Kelola jurnal dari penjualan (invoice, pembayaran, retur)." />;
+      case 'finance-journal-purchases':
+        return <FinanceModulePlaceholder theme={theme} title="Jurnal Pembelian" description="Kelola jurnal dari pembelian (bill, pembayaran, retur)." />;
+      case 'finance-journal-bank':
+        return <FinanceModulePlaceholder theme={theme} title="Jurnal Bank" description="Transaksi bank masuk/keluar, biaya bank, dan rekonsiliasi." />;
+      case 'finance-journal-cash':
+        return <FinanceModulePlaceholder theme={theme} title="Jurnal Kas" description="Transaksi kas kecil dan mutasi kas." />;
+      case 'finance-journal-entries':
+        return <FinanceModulePlaceholder theme={theme} title="Entri Jurnal" description="Buat dan kelola entri jurnal manual." />;
+      case 'finance-chart-of-accounts':
+        return <ChartOfAccounts theme={theme} />;
+      case 'finance-bank-reconciliation':
+        return <FinanceModulePlaceholder theme={theme} title="Rekonsiliasi Bank" description="Cocokkan statement bank dengan buku besar." />;
+      case 'finance-taxes':
+        return <FinanceModulePlaceholder theme={theme} title="Pajak" description="Kelola pajak penjualan, PPN, dan pelaporan pajak." />;
+      case 'finance-assets':
+        return <FinanceModulePlaceholder theme={theme} title="Aset Tetap" description="Daftar aset, depresiasi, dan penjualan aset." />;
+      case 'finance-budgeting':
+        return <FinanceModulePlaceholder theme={theme} title="Anggaran" description="Target anggaran per akun/departemen dan realisasi." />;
+      // Laporan
+      case 'finance-report-balance-sheet':
+        return <BalanceSheetReport theme={theme} />;
+      case 'finance-report-profit-loss':
+        return <ProfitLossReport theme={theme} />;
+      case 'finance-report-cash-flow':
+        return <CashFlowReport theme={theme} />;
+      case 'finance-journal-entries':
+        return <JournalEntries theme={theme} />;
+      case 'production-planning':
+        return <ProductionPlanning theme={theme} />;
       default:
         return <DashboardContent theme={theme} allSales={offlineSales} allOrders={ecommerceOrders} salesByPlatformData={salesByPlatformData} bestSellingProducts={bestSellingProducts} receivables={receivablesList} payables={payablesList} setActivePage={setActivePage} lowStockItems={lowStockItems} />;
     }
@@ -298,7 +335,30 @@ export default function App() {
 
         <header className="flex items-center justify-between mb-8">
           <h1 className={`text-2xl md:text-3xl font-bold capitalize`} style={{ color: theme.text }}>
-            {activePage === 'dashboard' ? 'Dashboard' : activePage === 'inventory' ? 'Manajemen Stok' : activePage === 'finance-dashboard' ? 'Dashboard Keuangan' : activePage === 'finance-pemasukan' ? 'Pemasukan' : activePage === 'finance-pengeluaran' ? 'Pengeluaran' : activePage === 'finance-payables' ? 'Hutang Piutang' : activePage === 'finance-saldokas' ? 'Saldo Kas' : activePage === 'sales-ecommerce' ? 'E-commerce' : activePage === 'sales-offline' ? 'Toko Fisik' : activePage}
+            {activePage === 'dashboard' ? 'Dashboard'
+            : activePage === 'inventory' ? 'Manajemen Stok'
+            : activePage === 'sales-ecommerce' ? 'E-commerce'
+            : activePage === 'sales-offline' ? 'Toko Fisik'
+            : activePage === 'finance-dashboard' ? 'Dashboard Keuangan'
+            : activePage === 'finance-pemasukan' ? 'Pemasukan'
+            : activePage === 'finance-pengeluaran' ? 'Pengeluaran'
+            : activePage === 'finance-payables' ? 'Hutang Piutang'
+            : activePage === 'finance-saldokas' ? 'Saldo Kas'
+            : activePage === 'finance-journal-sales' ? 'Jurnal Penjualan'
+            : activePage === 'finance-journal-purchases' ? 'Jurnal Pembelian'
+            : activePage === 'finance-journal-bank' ? 'Jurnal Bank'
+            : activePage === 'finance-journal-cash' ? 'Jurnal Kas'
+            : activePage === 'finance-journal-entries' ? 'Entri Jurnal'
+            : activePage === 'finance-chart-of-accounts' ? 'Bagan Akun'
+            : activePage === 'finance-bank-reconciliation' ? 'Rekonsiliasi Bank'
+            : activePage === 'finance-taxes' ? 'Pajak'
+            : activePage === 'finance-assets' ? 'Aset Tetap'
+            : activePage === 'finance-budgeting' ? 'Anggaran'
+            : activePage === 'finance-report-balance-sheet' ? 'Laporan Neraca'
+            : activePage === 'finance-report-profit-loss' ? 'Laporan Laba Rugi'
+            : activePage === 'finance-report-cash-flow' ? 'Laporan Arus Kas'
+            : activePage === 'production-planning' ? 'Perencanaan Produksi'
+            : activePage}
           </h1>
           <div className="hidden md:flex items-center space-x-4">
             <span className={`text-sm font-medium`} style={{ color: theme.accent }}>Selamat datang, {storeName}!</span>

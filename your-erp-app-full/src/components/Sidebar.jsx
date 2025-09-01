@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import AccountingSidebar from './AccountingSidebar';
 import {
   Home,
   Package,
@@ -18,6 +19,7 @@ import {
   ChevronDown,
   Building2,
   ShoppingBag,
+  Layers,
 } from 'lucide-react';
 
 const Sidebar = ({ active, setActive, isSidebarOpen, setSidebarOpen, storeName, theme, storeLogo }) => {
@@ -43,12 +45,30 @@ const Sidebar = ({ active, setActive, isSidebarOpen, setSidebarOpen, storeName, 
     { name: 'Penjualan', icon: ShoppingBag, type: 'dropdown', isOpen: salesMenuOpen, toggle: () => setSalesMenuOpen(!salesMenuOpen) },
     { name: 'E-commerce', icon: Globe, page: 'sales-ecommerce', type: 'submenu', parent: 'sales' },
     { name: 'Toko Fisik', icon: Building2, page: 'sales-offline', type: 'submenu', parent: 'sales' },
+    { name: 'Produksi', icon: Package, page: 'production-planning', type: 'menu' },
     { name: 'Keuangan', icon: DollarSign, type: 'dropdown', isOpen: financeMenuOpen, toggle: () => setFinanceMenuOpen(!financeMenuOpen)},
     { name: 'Dashboard Keuangan', icon: Home, page: 'finance-dashboard', type: 'submenu', parent: 'finance' },
-    { name: 'Pemasukan', icon: ArrowUpRight, page: 'finance-pemasukan', type: 'submenu', parent: 'finance' },
+  { name: 'Pemasukan', icon: ArrowUpRight, page: 'finance-pemasukan', type: 'submenu', parent: 'finance' },
     { name: 'Pengeluaran', icon: ArrowDownLeft, page: 'finance-pengeluaran', type: 'submenu', parent: 'finance' },
     { name: 'Hutang Piutang', icon: ClipboardList, page: 'finance-payables', type: 'submenu', parent: 'finance' },
     { name: 'Saldo Kas', icon: Briefcase, page: 'finance-saldokas', type: 'submenu', parent: 'finance' },
+  // Akuntansi group
+  { name: 'Akuntansi', type: 'separator', parent: 'finance' },
+  { name: 'Jurnal Penjualan', icon: ArrowUpRight, page: 'finance-journal-sales', type: 'submenu', parent: 'finance' },
+  { name: 'Jurnal Pembelian', icon: ArrowDownLeft, page: 'finance-journal-purchases', type: 'submenu', parent: 'finance' },
+  { name: 'Jurnal Bank', icon: Briefcase, page: 'finance-journal-bank', type: 'submenu', parent: 'finance' },
+  { name: 'Jurnal Kas', icon: Briefcase, page: 'finance-journal-cash', type: 'submenu', parent: 'finance' },
+  { name: 'Entri Jurnal', icon: ClipboardList, page: 'finance-journal-entries', type: 'submenu', parent: 'finance' },
+  { name: 'Bagan Akun', icon: Layers, page: 'finance-chart-of-accounts', type: 'submenu', parent: 'finance' },
+  { name: 'Rekonsiliasi Bank', icon: ClipboardList, page: 'finance-bank-reconciliation', type: 'submenu', parent: 'finance' },
+  { name: 'Pajak', icon: DollarSign, page: 'finance-taxes', type: 'submenu', parent: 'finance' },
+  { name: 'Aset Tetap', icon: Package, page: 'finance-assets', type: 'submenu', parent: 'finance' },
+  { name: 'Anggaran', icon: BarChartIcon, page: 'finance-budgeting', type: 'submenu', parent: 'finance' },
+  // Laporan group
+  { name: 'Laporan', type: 'separator', parent: 'finance' },
+  { name: 'Neraca', icon: BarChartIcon, page: 'finance-report-balance-sheet', type: 'submenu', parent: 'finance' },
+  { name: 'Laba Rugi', icon: BarChartIcon, page: 'finance-report-profit-loss', type: 'submenu', parent: 'finance' },
+  { name: 'Arus Kas', icon: BarChartIcon, page: 'finance-report-cash-flow', type: 'submenu', parent: 'finance' },
     { name: 'Karyawan', icon: Users, page: 'employees', type: 'menu' },
     { name: 'CRM', icon: Heart, page: 'crm', type: 'menu' },
     { name: 'Laporan', icon: BarChartIcon, page: 'reports', type: 'menu' },
@@ -80,15 +100,33 @@ const Sidebar = ({ active, setActive, isSidebarOpen, setSidebarOpen, storeName, 
                     </button>
                 </li>
             );
-        } else if (item.type === 'submenu') {
+    } else if (item.type === 'separator') {
+      if ((item.parent === 'finance' && financeMenuOpen) || (item.parent === 'sales' && salesMenuOpen)) {
+        return (
+          <li key={`sep-${item.name}`} className="mt-4 mb-2 ml-2">
+            <div className="text-xs uppercase tracking-wider font-bold opacity-70" style={{ color: theme.accent }}>{item.name}</div>
+          </li>
+        );
+      }
+    } else if (item.type === 'submenu') {
             if ((item.parent === 'finance' && financeMenuOpen) || (item.parent === 'sales' && salesMenuOpen)) {
                 return (
                     <li key={item.page} className="mb-2 ml-4">
                         <a
                             href="#"
-                            onClick={() => {
+                            onClick={(e) => {
+                                e.preventDefault();
+                                // Store current scroll position
+                                const scrollPosition = window.scrollY;
                                 setActive(item.page);
-                                setSidebarOpen(false);
+                                // Only close sidebar on mobile
+                                if (window.innerWidth < 768) {
+                                    setSidebarOpen(false);
+                                }
+                                // Restore scroll position
+                                setTimeout(() => {
+                                    window.scrollTo(0, scrollPosition);
+                                }, 0);
                             }}
                             className={`flex items-center p-3 rounded-lg transition-colors duration-200`}
                             style={{ backgroundColor: active === item.page ? theme.secondary : 'transparent', color: active === item.page ? theme.text : theme.accent }}
@@ -104,9 +142,19 @@ const Sidebar = ({ active, setActive, isSidebarOpen, setSidebarOpen, storeName, 
                 <li key={item.page} className="mb-2">
                     <a
                         href="#"
-                        onClick={() => {
+                        onClick={(e) => {
+                            e.preventDefault();
+                            // Store current scroll position
+                            const scrollPosition = window.scrollY;
                             setActive(item.page);
-                            setSidebarOpen(false); // Close sidebar after click on mobile
+                            // Only close sidebar on mobile
+                            if (window.innerWidth < 768) {
+                                setSidebarOpen(false);
+                            }
+                            // Restore scroll position
+                            setTimeout(() => {
+                                window.scrollTo(0, scrollPosition);
+                            }, 0);
                         }}
                         className={`flex items-center p-3 rounded-lg transition-colors duration-200`}
                         style={{ backgroundColor: active === item.page ? theme.secondary : 'transparent', color: active === item.page ? theme.text : theme.accent }}
@@ -130,8 +178,8 @@ const Sidebar = ({ active, setActive, isSidebarOpen, setSidebarOpen, storeName, 
           onClick={() => setSidebarOpen(false)}
         ></div>
       )}
-      <div className={`fixed inset-y-0 left-0 transform ${isSidebarOpen ? 'translate-x-0' : '-translate-x-full'} md:relative md:translate-x-0 transition-transform duration-300 ease-in-out w-64 p-6 flex flex-col z-50`} style={{ backgroundColor: theme.background }}>
-        <div className="flex items-center justify-between mb-10">
+      <div className={`fixed inset-y-0 left-0 transform ${isSidebarOpen ? 'translate-x-0' : '-translate-x-full'} md:relative md:translate-x-0 transition-transform duration-300 ease-in-out w-64 p-6 flex flex-col z-50 max-h-screen`} style={{ backgroundColor: theme.background }}>
+        <div className="flex items-center justify-between mb-10 flex-shrink-0">
           <div className="flex items-center">
             {/* Logo, nama aplikasi, dan nomor versi */}
             <img src={storeLogo} alt="Logo Toko" className="w-10 h-10 rounded-full mr-3" />
@@ -152,15 +200,28 @@ const Sidebar = ({ active, setActive, isSidebarOpen, setSidebarOpen, storeName, 
             <X size={24} />
           </button>
         </div>
-        <nav className="flex-1">
+        <nav className="flex-1 overflow-y-auto sidebar-scroll">
           <ul>
             {renderNavItems()}
           </ul>
         </nav>
-        <div className={`mt-auto pt-6 border-t`} style={{ borderColor: theme.special }}>
+        <div className={`mt-auto pt-6 border-t flex-shrink-0`} style={{ borderColor: theme.special }}>
           <a
             href="#"
-            onClick={() => setActive('settings')}
+            onClick={(e) => {
+              e.preventDefault();
+              // Store current scroll position
+              const scrollPosition = window.scrollY;
+              setActive('settings');
+              // Only close sidebar on mobile
+              if (window.innerWidth < 768) {
+                setSidebarOpen(false);
+              }
+              // Restore scroll position
+              setTimeout(() => {
+                window.scrollTo(0, scrollPosition);
+              }, 0);
+            }}
             className={`flex items-center p-3 rounded-lg transition-colors duration-200 mb-2`}
             style={{ backgroundColor: active === 'settings' ? theme.secondary : 'transparent', color: active === 'settings' ? theme.text : theme.accent }}
           >

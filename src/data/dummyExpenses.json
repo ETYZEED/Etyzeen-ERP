@@ -1,0 +1,902 @@
+[
+  {
+    "id": 1,
+    "date": "2023-01-15",
+    "description": "Office Supplies Purchase",
+    "amount": 250000,
+    "category": "Operational",
+    "paymentMethod": "Cash",
+    "status": "Completed"
+  },
+  {
+    "id": 2,
+    "date": "2023-01-20",
+    "description": "Marketing Campaign Materials",
+    "amount": 500000,
+    "category": "Marketing",
+    "paymentMethod": "Bank Transfer",
+    "status": "Completed"
+  },
+  {
+    "id": 3,
+    "date": "2023-01-25",
+    "description": "Equipment Maintenance",
+    "amount": 750000,
+    "category": "Maintenance",
+    "paymentMethod": "Credit Card",
+    "status": "Pending"
+  },
+  {
+    "id": 4,
+    "date": "2023-02-05",
+    "description": "Transportation Costs",
+    "amount": 300000,
+    "category": "Transportation",
+    "paymentMethod": "Cash",
+    "status": "Completed"
+  },
+  {
+    "id": 5,
+    "date": "2023-02-10",
+    "description": "Utility Bills",
+    "amount": 450000,
+    "category": "Utilities",
+    "paymentMethod": "Bank Transfer",
+    "status": "Completed"
+  },
+  {
+    "id": 6,
+    "date": "2023-02-15",
+    "description": "Software License Renewal",
+    "amount": 1200000,
+    "category": "Operational",
+    "paymentMethod": "Credit Card",
+    "status": "Completed"
+  },
+  {
+    "id": 7,
+    "date": "2023-02-20",
+    "description": "Advertising Expenses",
+    "amount": 800000,
+    "category": "Marketing",
+    "paymentMethod": "Bank Transfer",
+    "status": "Pending"
+  },
+  {
+    "id": 8,
+    "date": "2023-03-01",
+    "description": "Facility Repairs",
+    "amount": 600000,
+    "category": "Maintenance",
+    "paymentMethod": "Cash",
+    "status": "Completed"
+  },
+  {
+    "id": 9,
+    "date": "2023-03-10",
+    "description": "Employee Training",
+    "amount": 950000,
+    "category": "Operational",
+    "paymentMethod": "Bank Transfer",
+    "status": "Completed"
+  },
+  {
+    "id": 10,
+    "date": "2023-03-15",
+    "description": "Promotional Materials",
+    "amount": 350000,
+    "category": "Marketing",
+    "paymentMethod": "Credit Card",
+    "status": "Completed"
+  },
+  {
+    "id": 11,
+    "date": "2023-03-20",
+    "description": "Vehicle Fuel",
+    "amount": 200000,
+    "category": "Transportation",
+    "paymentMethod": "Cash",
+    "status": "Completed"
+  },
+  {
+    "id": 12,
+    "date": "2023-04-01",
+    "description": "Electricity Bill",
+    "amount": 550000,
+    "category": "Utilities",
+    "paymentMethod": "Bank Transfer",
+    "status": "Pending"
+  },
+  {
+    "id": 13,
+    "date": "2023-04-10",
+    "description": "IT Equipment Purchase",
+    "amount": 1500000,
+    "category": "Operational",
+    "paymentMethod": "Credit Card",
+    "status": "Completed"
+  },
+  {
+    "id": 14,
+    "date": "2023-04-15",
+    "description": "Social Media Ads",
+    "amount": 400000,
+    "category": "Marketing",
+    "paymentMethod": "Bank Transfer",
+    "status": "Completed"
+  },
+  {
+    "id": 15,
+    "date": "2023-04-20",
+    "description": "HVAC Maintenance",
+    "amount": 700000,
+    "category": "Maintenance",
+    "paymentMethod": "Cash",
+    "status": "Completed"
+  },
+  {
+    "id": 16,
+    "date": "2023-05-01",
+    "description": "Office Rent",
+    "amount": 2000000,
+    "category": "Operational",
+    "paymentMethod": "Bank Transfer",
+    "status": "Completed"
+  },
+  {
+    "id": 17,
+    "date": "2023-05-10",
+    "description": "Trade Show Booth",
+    "amount": 1200000,
+    "category": "Marketing",
+    "paymentMethod": "Credit Card",
+    "status": "Pending"
+  },
+  {
+    "id": 18,
+    "date": "2023-05-15",
+    "description": "Plumbing Repairs",
+    "amount": 450000,
+    "category": "Maintenance",
+    "paymentMethod": "Cash",
+    "status": "Completed"
+  },
+  {
+    "id": 19,
+    "date": "2023-05-20",
+    "description": "Courier Services",
+    "amount": 150000,
+    "category": "Transportation",
+    "paymentMethod": "Bank Transfer",
+    "status": "Completed"
+  },
+  {
+    "id": 20,
+    "date": "2023-06-01",
+    "description": "Water Bill",
+    "amount": 300000,
+    "category": "Utilities",
+    "paymentMethod": "Cash",
+    "status": "Completed"
+  },
+  {
+    "id": 21,
+    "date": "2023-06-10",
+    "description": "Consulting Services",
+    "amount": 1800000,
+    "category": "Operational",
+    "paymentMethod": "Bank Transfer",
+    "status": "Completed"
+  },
+  {
+    "id": 22,
+    "date": "2023-06-15",
+    "description": "Brand Merchandise",
+    "amount": 600000,
+    "category": "Marketing",
+    "paymentMethod": "Credit Card",
+    "status": "Pending"
+  },
+  {
+    "id": 23,
+    "date": "2023-06-20",
+    "description": "Security System Upgrade",
+    "amount": 900000,
+    "category": "Maintenance",
+    "paymentMethod": "Bank Transfer",
+    "status": "Completed"
+  },
+  {
+    "id": 24,
+    "date": "2023-07-01",
+    "description": "Taxi Fares",
+    "amount": 250000,
+    "category": "Transportation",
+    "paymentMethod": "Cash",
+    "status": "Completed"
+  },
+  {
+    "id": 25,
+    "date": "2023-07-10",
+    "description": "Internet Services",
+    "amount": 400000,
+    "category": "Utilities",
+    "paymentMethod": "Bank Transfer",
+    "status": "Completed"
+  },
+  {
+    "id": 26,
+    "date": "2023-07-15",
+    "description": "Conference Registration",
+    "amount": 750000,
+    "category": "Operational",
+    "paymentMethod": "Credit Card",
+    "status": "Completed"
+  },
+  {
+    "id": 27,
+    "date": "2023-07-20",
+    "description": "Digital Marketing Campaign",
+    "amount": 1000000,
+    "category": "Marketing",
+    "paymentMethod": "Bank Transfer",
+    "status": "Pending"
+  },
+  {
+    "id": 28,
+    "date": "2023-08-01",
+    "description": "Roof Repairs",
+    "amount": 1200000,
+    "category": "Maintenance",
+    "paymentMethod": "Cash",
+    "status": "Completed"
+  },
+  {
+    "id": 29,
+    "date": "2023-08-10",
+    "description": "Professional Development",
+    "amount": 500000,
+    "category": "Operational",
+    "paymentMethod": "Bank Transfer",
+    "status": "Completed"
+  },
+  {
+    "id": 30,
+    "date": "2023-08-15",
+    "description": "Billboard Advertising",
+    "amount": 1500000,
+    "category": "Marketing",
+    "paymentMethod": "Credit Card",
+    "status": "Completed"
+  },
+  {
+    "id": 31,
+    "date": "2023-08-20",
+    "description": "Parking Fees",
+    "amount": 100000,
+    "category": "Transportation",
+    "paymentMethod": "Cash",
+    "status": "Completed"
+  },
+  {
+    "id": 32,
+    "date": "2023-09-01",
+    "description": "Gas Bill",
+    "amount": 350000,
+    "category": "Utilities",
+    "paymentMethod": "Bank Transfer",
+    "status": "Pending"
+  },
+  {
+    "id": 33,
+    "date": "2023-09-10",
+    "description": "Legal Services",
+    "amount": 2000000,
+    "category": "Operational",
+    "paymentMethod": "Credit Card",
+    "status": "Completed"
+  },
+  {
+    "id": 34,
+    "date": "2023-09-15",
+    "description": "Email Marketing",
+    "amount": 300000,
+    "category": "Marketing",
+    "paymentMethod": "Bank Transfer",
+    "status": "Completed"
+  },
+  {
+    "id": 35,
+    "date": "2023-09-20",
+    "description": "Elevator Maintenance",
+    "amount": 800000,
+    "category": "Maintenance",
+    "paymentMethod": "Cash",
+    "status": "Completed"
+  },
+  {
+    "id": 36,
+    "date": "2023-10-01",
+    "description": "Freight Charges",
+    "amount": 400000,
+    "category": "Transportation",
+    "paymentMethod": "Bank Transfer",
+    "status": "Completed"
+  },
+  {
+    "id": 37,
+    "date": "2023-10-10",
+    "description": "Audit Services",
+    "amount": 1500000,
+    "category": "Operational",
+    "paymentMethod": "Credit Card",
+    "status": "Pending"
+  },
+  {
+    "id": 38,
+    "date": "2023-10-15",
+    "description": "Product Launch Event",
+    "amount": 2500000,
+    "category": "Marketing",
+    "paymentMethod": "Bank Transfer",
+    "status": "Completed"
+  },
+  {
+    "id": 39,
+    "date": "2023-10-20",
+    "description": "Fire Safety Inspection",
+    "amount": 300000,
+    "category": "Maintenance",
+    "paymentMethod": "Cash",
+    "status": "Completed"
+  },
+  {
+    "id": 40,
+    "date": "2023-11-01",
+    "description": "Phone Bill",
+    "amount": 250000,
+    "category": "Utilities",
+    "paymentMethod": "Bank Transfer",
+    "status": "Completed"
+  },
+  {
+    "id": 41,
+    "date": "2023-11-10",
+    "description": "Research and Development",
+    "amount": 3000000,
+    "category": "Operational",
+    "paymentMethod": "Credit Card",
+    "status": "Completed"
+  },
+  {
+    "id": 42,
+    "date": "2023-11-15",
+    "description": "Influencer Marketing",
+    "amount": 800000,
+    "category": "Marketing",
+    "paymentMethod": "Bank Transfer",
+    "status": "Pending"
+  },
+  {
+    "id": 43,
+    "date": "2023-11-20",
+    "description": "Window Cleaning",
+    "amount": 150000,
+    "category": "Maintenance",
+    "paymentMethod": "Cash",
+    "status": "Completed"
+  },
+  {
+    "id": 44,
+    "date": "2023-12-01",
+    "description": "Airport Transfers",
+    "amount": 500000,
+    "category": "Transportation",
+    "paymentMethod": "Credit Card",
+    "status": "Completed"
+  },
+  {
+    "id": 45,
+    "date": "2023-12-10",
+    "description": "Insurance Premium",
+    "amount": 1200000,
+    "category": "Operational",
+    "paymentMethod": "Bank Transfer",
+    "status": "Completed"
+  },
+  {
+    "id": 46,
+    "date": "2023-12-15",
+    "description": "Holiday Party",
+    "amount": 1000000,
+    "category": "Marketing",
+    "paymentMethod": "Cash",
+    "status": "Completed"
+  },
+  {
+    "id": 47,
+    "date": "2023-12-20",
+    "description": "Pest Control",
+    "amount": 400000,
+    "category": "Maintenance",
+    "paymentMethod": "Bank Transfer",
+    "status": "Pending"
+  },
+  {
+    "id": 48,
+    "date": "2024-01-01",
+    "description": "New Year Celebration",
+    "amount": 600000,
+    "category": "Operational",
+    "paymentMethod": "Credit Card",
+    "status": "Completed"
+  },
+  {
+    "id": 49,
+    "date": "2024-01-10",
+    "description": "SEO Services",
+    "amount": 700000,
+    "category": "Marketing",
+    "paymentMethod": "Bank Transfer",
+    "status": "Completed"
+  },
+  {
+    "id": 50,
+    "date": "2024-01-15",
+    "description": "Landscaping",
+    "amount": 900000,
+    "category": "Maintenance",
+    "paymentMethod": "Cash",
+    "status": "Completed"
+  },
+  {
+    "id": 51,
+    "date": "2024-01-20",
+    "description": "Shipping Costs",
+    "amount": 350000,
+    "category": "Transportation",
+    "paymentMethod": "Bank Transfer",
+    "status": "Completed"
+  },
+  {
+    "id": 52,
+    "date": "2024-02-01",
+    "description": "Heating Bill",
+    "amount": 450000,
+    "category": "Utilities",
+    "paymentMethod": "Credit Card",
+    "status": "Pending"
+  },
+  {
+    "id": 53,
+    "date": "2024-02-10",
+    "description": "Team Building Event",
+    "amount": 1200000,
+    "category": "Operational",
+    "paymentMethod": "Bank Transfer",
+    "status": "Completed"
+  },
+  {
+    "id": 54,
+    "date": "2024-02-15",
+    "description": "Content Creation",
+    "amount": 500000,
+    "category": "Marketing",
+    "paymentMethod": "Cash",
+    "status": "Completed"
+  },
+  {
+    "id": 55,
+    "date": "2024-02-20",
+    "description": "Electrical Repairs",
+    "amount": 650000,
+    "category": "Maintenance",
+    "paymentMethod": "Credit Card",
+    "status": "Completed"
+  },
+  {
+    "id": 56,
+    "date": "2024-03-01",
+    "description": "Bus Tickets",
+    "amount": 200000,
+    "category": "Transportation",
+    "paymentMethod": "Bank Transfer",
+    "status": "Completed"
+  },
+  {
+    "id": 57,
+    "date": "2024-03-10",
+    "description": "Waste Management",
+    "amount": 300000,
+    "category": "Utilities",
+    "paymentMethod": "Cash",
+    "status": "Pending"
+  },
+  {
+    "id": 58,
+    "date": "2024-03-15",
+    "description": "Patent Filing",
+    "amount": 2500000,
+    "category": "Operational",
+    "paymentMethod": "Credit Card",
+    "status": "Completed"
+  },
+  {
+    "id": 59,
+    "date": "2024-03-20",
+    "description": "Podcast Production",
+    "amount": 800000,
+    "category": "Marketing",
+    "paymentMethod": "Bank Transfer",
+    "status": "Completed"
+  },
+  {
+    "id": 60,
+    "date": "2024-04-01",
+    "description": "Painting Services",
+    "amount": 550000,
+    "category": "Maintenance",
+    "paymentMethod": "Cash",
+    "status": "Completed"
+  },
+  {
+    "id": 61,
+    "date": "2024-04-10",
+    "description": "Vehicle Lease",
+    "amount": 1800000,
+    "category": "Transportation",
+    "paymentMethod": "Bank Transfer",
+    "status": "Completed"
+  },
+  {
+    "id": 62,
+    "date": "2024-04-15",
+    "description": "Cable Services",
+    "amount": 200000,
+    "category": "Utilities",
+    "paymentMethod": "Credit Card",
+    "status": "Pending"
+  },
+  {
+    "id": 63,
+    "date": "2024-04-20",
+    "description": "Board Meeting Catering",
+    "amount": 400000,
+    "category": "Operational",
+    "paymentMethod": "Cash",
+    "status": "Completed"
+  },
+  {
+    "id": 64,
+    "date": "2024-05-01",
+    "description": "Video Marketing",
+    "amount": 1500000,
+    "category": "Marketing",
+    "paymentMethod": "Bank Transfer",
+    "status": "Completed"
+  },
+  {
+    "id": 65,
+    "date": "2024-05-10",
+    "description": "Gutter Cleaning",
+    "amount": 250000,
+    "category": "Maintenance",
+    "paymentMethod": "Credit Card",
+    "status": "Completed"
+  },
+  {
+    "id": 66,
+    "date": "2024-05-15",
+    "description": "Railway Tickets",
+    "amount": 300000,
+    "category": "Transportation",
+    "paymentMethod": "Cash",
+    "status": "Completed"
+  },
+  {
+    "id": 67,
+    "date": "2024-05-20",
+    "description": "Security Services",
+    "amount": 700000,
+    "category": "Utilities",
+    "paymentMethod": "Bank Transfer",
+    "status": "Pending"
+  },
+  {
+    "id": 68,
+    "date": "2024-06-01",
+    "description": "Executive Retreat",
+    "amount": 3000000,
+    "category": "Operational",
+    "paymentMethod": "Credit Card",
+    "status": "Completed"
+  },
+  {
+    "id": 69,
+    "date": "2024-06-10",
+    "description": "Affiliate Marketing",
+    "amount": 600000,
+    "category": "Marketing",
+    "paymentMethod": "Bank Transfer",
+    "status": "Completed"
+  },
+  {
+    "id": 70,
+    "date": "2024-06-15",
+    "description": "Fence Installation",
+    "amount": 800000,
+    "category": "Maintenance",
+    "paymentMethod": "Cash",
+    "status": "Completed"
+  },
+  {
+    "id": 71,
+    "date": "2024-06-20",
+    "description": "Air Travel",
+    "amount": 2500000,
+    "category": "Transportation",
+    "paymentMethod": "Credit Card",
+    "status": "Completed"
+  },
+  {
+    "id": 72,
+    "date": "2024-07-01",
+    "description": "Data Services",
+    "amount": 350000,
+    "category": "Utilities",
+    "paymentMethod": "Bank Transfer",
+    "status": "Pending"
+  },
+  {
+    "id": 73,
+    "date": "2024-07-10",
+    "description": "Strategic Planning",
+    "amount": 1500000,
+    "category": "Operational",
+    "paymentMethod": "Cash",
+    "status": "Completed"
+  },
+  {
+    "id": 74,
+    "date": "2024-07-15",
+    "description": "PR Services",
+    "amount": 900000,
+    "category": "Marketing",
+    "paymentMethod": "Credit Card",
+    "status": "Completed"
+  },
+  {
+    "id": 75,
+    "date": "2024-07-20",
+    "description": "Carpet Cleaning",
+    "amount": 300000,
+    "category": "Maintenance",
+    "paymentMethod": "Bank Transfer",
+    "status": "Completed"
+  },
+  {
+    "id": 76,
+    "date": "2024-08-01",
+    "description": "Toll Fees",
+    "amount": 150000,
+    "category": "Transportation",
+    "paymentMethod": "Cash",
+    "status": "Completed"
+  },
+  {
+    "id": 77,
+    "date": "2024-08-10",
+    "description": "Cloud Services",
+    "amount": 800000,
+    "category": "Utilities",
+    "paymentMethod": "Credit Card",
+    "status": "Pending"
+  },
+  {
+    "id": 78,
+    "date": "2024-08-15",
+    "description": "Investor Relations",
+    "amount": 1200000,
+    "category": "Operational",
+    "paymentMethod": "Bank Transfer",
+    "status": "Completed"
+  },
+  {
+    "id": 79,
+    "date": "2024-08-20",
+    "description": "Event Sponsorship",
+    "amount": 2000000,
+    "category": "Marketing",
+    "paymentMethod": "Cash",
+    "status": "Completed"
+  },
+  {
+    "id": 80,
+    "date": "2024-09-01",
+    "description": "Door Repairs",
+    "amount": 400000,
+    "category": "Maintenance",
+    "paymentMethod": "Credit Card",
+    "status": "Completed"
+  },
+  {
+    "id": 81,
+    "date": "2024-09-10",
+    "description": "Hotel Accommodations",
+    "amount": 1500000,
+    "category": "Transportation",
+    "paymentMethod": "Bank Transfer",
+    "status": "Completed"
+  },
+  {
+    "id": 82,
+    "date": "2024-09-15",
+    "description": "Domain Registration",
+    "amount": 250000,
+    "category": "Utilities",
+    "paymentMethod": "Cash",
+    "status": "Pending"
+  },
+  {
+    "id": 83,
+    "date": "2024-09-20",
+    "description": "Compliance Training",
+    "amount": 700000,
+    "category": "Operational",
+    "paymentMethod": "Credit Card",
+    "status": "Completed"
+  },
+  {
+    "id": 84,
+    "date": "2024-10-01",
+    "description": "Trade Show Materials",
+    "amount": 600000,
+    "category": "Marketing",
+    "paymentMethod": "Bank Transfer",
+    "status": "Completed"
+  },
+  {
+    "id": 85,
+    "date": "2024-10-10",
+    "description": "Locksmith Services",
+    "amount": 200000,
+    "category": "Maintenance",
+    "paymentMethod": "Cash",
+    "status": "Completed"
+  },
+  {
+    "id": 86,
+    "date": "2024-10-15",
+    "description": "Car Rental",
+    "amount": 800000,
+    "category": "Transportation",
+    "paymentMethod": "Credit Card",
+    "status": "Completed"
+  },
+  {
+    "id": 87,
+    "date": "2024-10-20",
+    "description": "VOIP Services",
+    "amount": 300000,
+    "category": "Utilities",
+    "paymentMethod": "Bank Transfer",
+    "status": "Pending"
+  },
+  {
+    "id": 88,
+    "date": "2024-11-01",
+    "description": "Board Meeting Expenses",
+    "amount": 500000,
+    "category": "Operational",
+    "paymentMethod": "Cash",
+    "status": "Completed"
+  },
+  {
+    "id": 89,
+    "date": "2024-11-10",
+    "description": "Direct Mail Campaign",
+    "amount": 400000,
+    "category": "Marketing",
+    "paymentMethod": "Credit Card",
+    "status": "Completed"
+  },
+  {
+    "id": 90,
+    "date": "2024-11-15",
+    "description": "Appliance Repairs",
+    "amount": 350000,
+    "category": "Maintenance",
+    "paymentMethod": "Bank Transfer",
+    "status": "Completed"
+  },
+  {
+    "id": 91,
+    "date": "2024-11-20",
+    "description": "Ferry Tickets",
+    "amount": 100000,
+    "category": "Transportation",
+    "paymentMethod": "Cash",
+    "status": "Completed"
+  },
+  {
+    "id": 92,
+    "date": "2024-12-01",
+    "description": "Backup Services",
+    "amount": 450000,
+    "category": "Utilities",
+    "paymentMethod": "Credit Card",
+    "status": "Pending"
+  },
+  {
+    "id": 93,
+    "date": "2024-12-10",
+    "description": "Market Research",
+    "amount": 1000000,
+    "category": "Operational",
+    "paymentMethod": "Bank Transfer",
+    "status": "Completed"
+  },
+  {
+    "id": 94,
+    "date": "2024-12-15",
+    "description": "Holiday Decorations",
+    "amount": 300000,
+    "category": "Marketing",
+    "paymentMethod": "Cash",
+    "status": "Completed"
+  },
+  {
+    "id": 95,
+    "date": "2024-12-20",
+    "description": "Snow Removal",
+    "amount": 250000,
+    "category": "Maintenance",
+    "paymentMethod": "Credit Card",
+    "status": "Completed"
+  },
+  {
+    "id": 96,
+    "date": "2024-12-25",
+    "description": "Year-End Party",
+    "amount": 800000,
+    "category": "Operational",
+    "paymentMethod": "Bank Transfer",
+    "status": "Completed"
+  },
+  {
+    "id": 97,
+    "date": "2024-12-30",
+    "description": "Gift Cards for Employees",
+    "amount": 500000,
+    "category": "Marketing",
+    "paymentMethod": "Cash",
+    "status": "Pending"
+  },
+  {
+    "id": 98,
+    "date": "2024-12-31",
+    "description": "New Year's Eve Event",
+    "amount": 1200000,
+    "category": "Operational",
+    "paymentMethod": "Credit Card",
+    "status": "Completed"
+  },
+  {
+    "id": 99,
+    "date": "2025-01-05",
+    "description": "Office Cleaning",
+    "amount": 200000,
+    "category": "Maintenance",
+    "paymentMethod": "Bank Transfer",
+    "status": "Completed"
+  },
+  {
+    "id": 100,
+    "date": "2025-01-10",
+    "description": "Subscription Services",
+    "amount": 150000,
+    "category": "Utilities",
+    "paymentMethod": "Cash",
+    "status": "Completed"
+  }
+]

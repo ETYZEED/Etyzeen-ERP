@@ -1,9 +1,13 @@
 import React, { useState, useEffect, useCallback, useMemo } from 'react';
 import { ResponsiveContainer, PieChart, Pie, Cell, BarChart, Bar, Tooltip, Legend, CartesianGrid, XAxis, YAxis } from 'recharts';
-import { TrendingUp, TrendingDown, Wallet, Briefcase, CreditCard, BellRing, MessageSquare, ShoppingCart } from 'lucide-react';
+import { TrendingUp, TrendingDown, Wallet, Briefcase, CreditCard, BellRing, MessageSquare, ShoppingCart, RefreshCw, AlertCircle } from 'lucide-react';
 import DashboardCard from '../components/DashboardCard';
+import DateFilter from '../components/DateFilter';
+import RecentTransactions from '../components/RecentTransactions';
+import LoadingSkeleton from '../components/LoadingSkeleton';
 import { CustomTooltip, CustomTooltipPie, ActivePieShape } from '../components/SharedComponents';
-import { formatRupiah } from '../utils/helpers';
+import { formatRupiah, getThemeTransition, getThemeGradient, getThemeShadow, getResponsiveClasses } from '../utils/helpers';
+import { calculateTrends } from '../utils/financialCalculations';
 // import DashboardAI from '../components/DashboardAI';
 
 // Data simulasi untuk demonstrasi
@@ -26,6 +30,8 @@ const DashboardContent = ({ theme, allSales, allOrders, salesByPlatformData, bes
     const [filter, setFilter] = useState('bulan_ini');
     const [activeIndexSales, setActiveIndexSales] = useState(-1);
     const [activeIndexStock, setActiveIndexStock] = useState(-1);
+    const [isLoading, setIsLoading] = useState(false);
+    const [error, setError] = useState(null);
 
     const onPieEnterSales = useCallback((_, index) => {
       setActiveIndexSales(index);
@@ -34,64 +40,48 @@ const DashboardContent = ({ theme, allSales, allOrders, salesByPlatformData, bes
       setActiveIndexStock(index);
     }, []);
 
-    const filteredFinancialSummary = useMemo(() => {
-      const now = new Date();
-      
-      const parseRupiah = (rupiahString) => parseFloat(rupiahString.replace(/[^0-9]/g, ''));
-
-      const filterDataByDate = (data) => {
-        return data.filter(item => {
-          const itemDate = new Date(item.date);
-          if (filter === 'hari_ini') {
-            return now.toDateString() === itemDate.toDateString();
-          } else if (filter === 'bulan_ini') {
-            return now.getFullYear() === itemDate.getFullYear() && now.getMonth() === itemDate.getMonth();
-          } else if (filter === 'tahun_ini') {
-            return now.getFullYear() === itemDate.getFullYear();
-          }
-          return true;
-        });
-      };
-    
-      const filteredOfflineSales = filterDataByDate(allSales);
-      const filteredEcomOrders = filterDataByDate(Object.values(allOrders).flat());
-    
-      const totalRevenue = filteredOfflineSales.reduce((sum, sale) => sum + parseRupiah(sale.total), 0) + 
-                           filteredEcomOrders.reduce((sum, order) => sum + parseRupiah(order.total), 0);
-      const totalExpenses = financeData.reduce((sum, item) => sum + item.Pengeluaran, 0);
-
-      return {
-        revenue: formatRupiah(totalRevenue),
-        expenses: formatRupiah(totalExpenses),
-        profit: formatRupiah(totalRevenue - totalExpenses),
-        cash: formatRupiah(50000000), // Angka statis untuk demo
-      };
+    const financialTrends = useMemo(() => {
+      try {
+        return calculateTrends(filter, allSales, allOrders);
+      } catch (error) {
+        console.error('Error calculating trends:', error);
+        setError('Error calculating financial trends');
+        // Fallback to basic calculation
+        return {
+          revenue: { value: 'Rp 0', trend: 0, rawValue: 0 },
+          expenses: { value: 'Rp 0', trend: 0, rawValue: 0 },
+          profit: { value: 'Rp 0', trend: 0, rawValue: 0 },
+          cash: { value: 'Rp 50,000,000', trend: 0, rawValue: 50000000 }
+        };
+      }
     }, [filter, allSales, allOrders]);
+
+    // Simulate loading state for demo
+    useEffect(() => {
+      setIsLoading(true);
+      const timer = setTimeout(() => {
+        setIsLoading(false);
+        setError(null);
+      }, 1000);
+      return () => clearTimeout(timer);
+    }, [filter]);
 
     return (
         <>
             <div className="flex items-center space-x-4 mb-8">
-                <button
-                    onClick={() => setFilter('hari_ini')}
-                    className={`font-semibold py-2 px-4 rounded-lg transition-colors duration-200 ${filter === 'hari_ini' ? 'font-bold' : ''}`}
-                    style={{ backgroundColor: filter === 'hari_ini' ? theme.accent : theme.secondary, color: filter === 'hari_ini' ? theme.background : theme.text }}
-                >
-                    Hari Ini
-                </button>
-                <button
-                    onClick={() => setFilter('bulan_ini')}
-                    className={`font-semibold py-2 px-4 rounded-lg transition-colors duration-200 ${filter === 'bulan_ini' ? 'font-bold' : ''}`}
-                    style={{ backgroundColor: filter === 'bulan_ini' ? theme.accent : theme.secondary, color: filter === 'bulan_ini' ? theme.background : theme.text }}
-                >
-                    Bulan Ini
-                </button>
-                <button
-                    onClick={() => setFilter('tahun_ini')}
-                    className={`font-semibold py-2 px-4 rounded-lg transition-colors duration-200 ${filter === 'tahun_ini' ? 'font-bold' : ''}`}
-                    style={{ backgroundColor: filter === 'tahun_ini' ? theme.accent : theme.secondary, color: filter === 'tahun_ini' ? theme.background : theme.text }}
-                >
-                    Tahun Ini
-                </button>
+                <DateFilter
+                  theme={theme}
+                  selectedFilter={filter}
+                  onFilterChange={(key, customRange) => {
+                    if (key === 'custom') {
+                      // Handle custom range filter
+                      // You can update state or fetch data accordingly
+                      console.log('Custom range selected:', customRange);
+                    } else {
+                      setFilter(key);
+                    }
+                  }}
+                />
             </div>
             {lowStockItems.length > 0 && (
                 <div
@@ -103,10 +93,10 @@ const DashboardContent = ({ theme, allSales, allOrders, salesByPlatformData, bes
                 </div>
             )}
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
-                <DashboardCard title="Total Pendapatan" value={filteredFinancialSummary.revenue} icon={TrendingUp} theme={theme} onClick={() => setActivePage('finance-pemasukan')} valueColor="#34d399" />
-                <DashboardCard title="Total Pengeluaran" value={filteredFinancialSummary.expenses} icon={TrendingDown} theme={theme} onClick={() => setActivePage('finance-pengeluaran')} valueColor="#ef4444" />
-                <DashboardCard title="Laba Bersih" value={filteredFinancialSummary.profit} icon={Wallet} theme={theme} onClick={() => setActivePage('finance-dashboard')} valueColor={theme.text} />
-                <DashboardCard title="Saldo Kas" value={filteredFinancialSummary.cash} icon={Briefcase} theme={theme} onClick={() => setActivePage('finance-saldokas')} valueColor="#60a5fa" />
+                <DashboardCard title="Total Pendapatan" value={financialTrends.revenue.value} icon={TrendingUp} theme={theme} onClick={() => setActivePage('finance-pemasukan')} valueColor="#34d399" trend={financialTrends.revenue.trend} />
+                <DashboardCard title="Total Pengeluaran" value={financialTrends.expenses.value} icon={TrendingDown} theme={theme} onClick={() => setActivePage('finance-pengeluaran')} valueColor="#ef4444" trend={financialTrends.expenses.trend} />
+                <DashboardCard title="Laba Bersih" value={financialTrends.profit.value} icon={Wallet} theme={theme} onClick={() => setActivePage('finance-dashboard')} valueColor={theme.text} trend={financialTrends.profit.trend} />
+                <DashboardCard title="Saldo Kas" value={financialTrends.cash.value} icon={Briefcase} theme={theme} onClick={() => setActivePage('finance-saldokas')} valueColor="#60a5fa" trend={financialTrends.cash.trend} />
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
                 <DashboardCard title="Total Piutang" value={`${receivables.length} Piutang`} icon={CreditCard} theme={theme} onClick={() => setActivePage('finance-payables')} valueColor={theme.text} />
@@ -118,17 +108,39 @@ const DashboardContent = ({ theme, allSales, allOrders, salesByPlatformData, bes
                     <h3 className={`text-xl font-semibold mb-6`} style={{ color: theme.text }}>Grafik Laba/Rugi Bulanan</h3>
                     <div style={{ overflowX: 'auto', width: '100%' }}>
                       <ResponsiveContainer width={1000} height={400}>
-                          <BarChart data={financeData}>
+                          <BarChart
+                            data={financeData}
+                            margin={{ top: 20, right: 30, left: 20, bottom: 5 }}
+                          >
                               <CartesianGrid strokeDasharray="3 3" stroke={`#404040`} />
-                              <XAxis dataKey="month" stroke={`#a3a3a3`} />
-                              <YAxis 
-                                  stroke={`#a3a3a3`} 
+                              <XAxis
+                                dataKey="month"
+                                stroke={`#a3a3a3`}
+                                tick={{ fontSize: 12 }}
+                              />
+                              <YAxis
+                                  stroke={`#a3a3a3`}
                                   tickFormatter={(value) => formatRupiah(value)}
+                                  tick={{ fontSize: 12 }}
                               />
                               <Tooltip content={<CustomTooltip theme={theme} />} />
                               <Legend />
-                              <Bar dataKey="Pendapatan" fill="#34d399" />
-                              <Bar dataKey="Pengeluaran" fill="#ef4444" />
+                              <Bar
+                                dataKey="Pendapatan"
+                                fill="#34d399"
+                                radius={[4, 4, 0, 0]}
+                                animationBegin={0}
+                                animationDuration={1000}
+                                animationEasing="ease-out"
+                              />
+                              <Bar
+                                dataKey="Pengeluaran"
+                                fill="#ef4444"
+                                radius={[4, 4, 0, 0]}
+                                animationBegin={200}
+                                animationDuration={1000}
+                                animationEasing="ease-out"
+                              />
                           </BarChart>
                       </ResponsiveContainer>
                     </div>
@@ -139,22 +151,37 @@ const DashboardContent = ({ theme, allSales, allOrders, salesByPlatformData, bes
                       <ResponsiveContainer width="100%" height="100%">
                         <PieChart>
                           <Pie
-                            data={salesByPlatformData}
+                            data={salesByPlatformData.map(item => ({
+                              ...item,
+                              total: salesByPlatformData.reduce((sum, d) => sum + d.value, 0)
+                            }))}
                             dataKey="value"
                             nameKey="name"
                             cx="50%"
                             cy="50%"
                             innerRadius={60}
-                            outerRadius={150} // Radius diperbesar
+                            outerRadius={150}
                             paddingAngle={5}
                             fill="#8884d8"
                             activeIndex={activeIndexSales}
                             activeShape={(props) => <ActivePieShape {...props} theme={theme} />}
                             onMouseEnter={onPieEnterSales}
                             onMouseLeave={() => setActiveIndexSales(-1)}
+                            animationBegin={0}
+                            animationDuration={800}
+                            animationEasing="ease-out"
                           >
                             {salesByPlatformData.map((entry, index) => (
-                              <Cell key={`cell-${index}`} fill={entry.color} stroke="#fff" strokeWidth={2}/>
+                              <Cell
+                                key={`cell-${index}`}
+                                fill={entry.color}
+                                stroke="#fff"
+                                strokeWidth={2}
+                                style={{
+                                  filter: activeIndexSales === index ? `drop-shadow(0px 0px 12px ${entry.color})` : 'none',
+                                  transition: 'all 0.3s ease'
+                                }}
+                              />
                             ))}
                           </Pie>
                           <Tooltip content={<CustomTooltipPie theme={theme}/>} />
@@ -165,14 +192,36 @@ const DashboardContent = ({ theme, allSales, allOrders, salesByPlatformData, bes
                       </div>
                     </div>
                     <div className="mt-8 flex flex-wrap justify-center gap-4">
-                      {salesByPlatformData.map((item) => (
-                        <div key={item.name} className="flex items-center">
+                      {salesByPlatformData.map((item, index) => (
+                        <div
+                          key={item.name}
+                          className={`flex items-center cursor-pointer transition-all duration-200 hover:scale-105 ${activeIndexSales === index ? 'scale-105' : ''}`}
+                          onMouseEnter={() => setActiveIndexSales(index)}
+                          onMouseLeave={() => setActiveIndexSales(-1)}
+                        >
                             <div className="w-4 h-4 rounded-full mr-2" style={{ backgroundColor: item.color }}></div>
                             <span className={`text-sm font-medium`} style={{ color: theme.text }}>{item.name}</span>
                         </div>
                       ))}
                     </div>
                 </div>
+            </div>
+
+            {/* Recent Transactions Section */}
+            <div className="mb-8">
+                <RecentTransactions
+                  theme={theme}
+                  transactions={[]} // Pass actual transactions data when available
+                  onViewTransaction={(transaction) => {
+                    console.log('View transaction:', transaction);
+                    // Handle view transaction logic
+                  }}
+                  onEditTransaction={(transaction) => {
+                    console.log('Edit transaction:', transaction);
+                    // Handle edit transaction logic
+                  }}
+                  setActivePage={setActivePage}
+                />
             </div>
         </>
     );

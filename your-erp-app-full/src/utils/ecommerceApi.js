@@ -36,6 +36,9 @@ export const ecommerceApiService = {
   // Get integration status
   getStatus: () => ecommerceApi.get('/ecommerce/status'),
 
+  // Get synced orders
+  getOrders: () => ecommerceApi.get('/ecommerce/orders'),
+
   // Manual sync
   sync: (platform = null) => 
     ecommerceApi.post(`/ecommerce/sync${platform ? `/${platform}` : ''}`),
